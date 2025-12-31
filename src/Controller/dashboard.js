@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Afficher le solde
   balance.textContent = currentUser.compte.solde + " MAD";
 
-  // Afficher les transactions
+
   const afficherTransaction = (tab) => {
     transactions_table.innerHTML = "";
     tab.forEach((u) => {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   afficherTransaction(currentUser.transaction);
 
-  // Fonction de paiement
+
   function handlePayer(montant) {
     return new Promise((resolve, reject) => {
       if (montant <= currentUser.compte.solde) {
@@ -44,13 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Bouton Payer
+  
   payer.addEventListener('click', () => {
     handlePayer(500)
       .then(message => {
         console.log(message);
 
-        // Mettre à jour le solde
+     
         currentUser.compte.solde -= 500;
         balance.textContent = currentUser.compte.solde + " MAD";
 
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         afficherTransaction(currentUser.transaction);
 
-        // Mettre à jour sessionStorage
+     
         sessionStorage.setItem("currentuser", JSON.stringify(currentUser));
       })
       .catch(erreur => alert(erreur));
